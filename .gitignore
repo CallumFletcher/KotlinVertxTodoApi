@@ -48,7 +48,6 @@ out/
 ## Eclipse
 ##############################
 .settings/
-bin/
 tmp/
 .metadata
 .classpath
@@ -65,7 +64,6 @@ local.properties
 ## NetBeans
 ##############################
 nbproject/private/
-build/
 nbbuild/
 dist/
 nbdist/
@@ -88,16 +86,6 @@ nb-configuration.xml
 
 ### Eclipse ###
 
-.metadata
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
 .recommenders
 
 # External tool builders
@@ -112,8 +100,6 @@ local.properties
 # CDT-specific (C/C++ Development Tooling)
 .cproject
 
-# Java annotation processor (APT)
-.factorypath
 
 # PDT-specific (PHP Development Tools)
 .buildpath
@@ -166,16 +152,13 @@ cmake-buildTool-debug/
 # Mongo Explorer plugin:
 .idea/**/mongoSettings.xml
 
-## File-based project format:
-*.iws
+
 
 ## Plugin-specific files:
 
 # IntelliJ
 /out/
 
-# mpeltonen/sbt-idea plugin
-.idea_modules/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
@@ -192,10 +175,9 @@ fabric.properties
 ### Intellij+iml Patch ###
 # Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
 
-*.iml
 modules.xml
 .idea/misc.xml
-*.ipr
+
 
 ### macOS ###
 *.DS_Store
@@ -225,41 +207,27 @@ Temporary Items
 .apdisk
 
 ### Maven ###
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
+
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
 
 ### Gradle ###
-.gradle
+
 /buildTool/
 
 # Ignore Gradle GUI config
-gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
-!gradle-wrapper.jar
 
 # Cache of project
-.gradletasknamecache
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
 ### NetBeans ###
-nbproject/private/
 buildTool/
-nbbuild/
-dist/
-nbdist/
+
 .nb-gradle/
 
 ### VisualStudioCode ###
