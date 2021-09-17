@@ -3,41 +3,50 @@ package com.example.starter
 import io.vertx.core.AbstractVerticle
 import io.vertx.core.Handler
 import io.vertx.core.Promise
+import io.vertx.core.json.JsonObject
 import io.vertx.ext.web.Router
-import io.vertx.core.json.Json
 import io.vertx.ext.web.RoutingContext
 
 class MainVerticle : AbstractVerticle() {
 
   override fun start(startPromise: Promise<Void>) {
-    val router = createRouter()
+    val requestRouter = createRouter()
+    val baseRouter = Router.router(vertx)
+    baseRouter.mountSubRouter("/api", requestRouter)
 
     vertx
       .createHttpServer()
-      .requestHandler(router)
-      .listen(8888) { http ->
+      .requestHandler(baseRouter)
+      .listen(8080) { http ->
         if (http.succeeded()) {
           startPromise.complete()
-          println("HTTP server started on port 8888")
+          println("HTTP server started on port 8080")
         } else {
           startPromise.fail(http.cause());
         }
       }
+    vertx.deployVerticle(DatabaseVerticle())
   }
 
   private fun createRouter() = Router.router(vertx).apply {
-    get("/").handler(handlerRoot)
-    get("/all").handler(handlerAllTodos)
-    get("/urgent").handler(handlerUrgentTodos)
+    get("/unread").handler(unreadHandler)
+    get("/all/:message").handler(allTodosHandler)
+    get("/urgent").handler(urgentTodosHandler)
+
   }
 
-  val handlerRoot = Handler<RoutingContext> { req ->
-    req.response().end("root")
+  private val unreadHandler = Handler<RoutingContext> { req ->
+    val map = mapOf("hello" to "there", "map" to "test")
+    req.json(map)
   }
-  val handlerAllTodos = Handler<RoutingContext> { req ->
-    req.response().end("All Todos")
+  private val allTodosHandler = Handler<RoutingContext> { req ->
+
+    vertx.eventBus().send("db-address", req.pathParam("message"))
+    req.response().statusCode = 200;
+    req.response().end()
+
   }
-  val handlerUrgentTodos = Handler<RoutingContext> { req ->
+  private val urgentTodosHandler = Handler<RoutingContext> { req ->
     req.response().end("urgent todos")
   }
 

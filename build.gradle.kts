@@ -40,6 +40,8 @@ dependencies {
   implementation("io.vertx:vertx-shell")
   implementation("io.vertx:vertx-lang-kotlin")
   implementation(kotlin("stdlib-jdk8"))
+  implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+  implementation("org.junit.jupiter:junit-jupiter:5.7.0")
   testImplementation("io.vertx:vertx-junit5")
   testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
